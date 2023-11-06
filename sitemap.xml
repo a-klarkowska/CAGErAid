@@ -31,6 +31,9 @@
     <loc>https://a-klarkowska.github.io/CAGErAid/reference/msScope_nfcore_rnaseq.html</loc>
   </url>
   <url>
+    <loc>https://a-klarkowska.github.io/CAGErAid/reference/quickCC.html</loc>
+  </url>
+  <url>
     <loc>https://a-klarkowska.github.io/CAGErAid/reference/quickClustersNO.html</loc>
   </url>
   <url>
@@ -44,5 +47,8 @@
   </url>
   <url>
     <loc>https://a-klarkowska.github.io/CAGErAid/reference/quickPolish.html</loc>
+  </url>
+  <url>
+    <loc>https://a-klarkowska.github.io/CAGErAid/reference/quickTC.html</loc>
   </url>
 </urlset>

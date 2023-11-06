@@ -42,13 +42,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">quickMQC</span><span class="op">(</span></span>
-<span>  <span class="va">ce</span>,</span>
-<span>  guess_path <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  hisat <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  qc <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  check_multimap <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">quickMQC</span><span class="op">(</span><span class="va">ce</span>, guess_path <span class="op">=</span> <span class="cn">TRUE</span>, hisat <span class="op">=</span> <span class="cn">NULL</span>, qc <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -68,10 +62,6 @@
 <dt>qc</dt>
 <dd><p>table with multiqc_general_stats.txt data</p></dd>
 
-
-<dt>check_multimap</dt>
-<dd><p>boolean, checks if all reads have been removed by the pipeline</p></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -83,7 +73,7 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="fu">quickMQC</span><span class="op">(</span><span class="va">ce</span>, guess_path <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">hisat</span>, <span class="va">qc</span>, check_multimap <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">quickMQC</span><span class="op">(</span><span class="va">ce</span>, guess_path <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">hisat</span>, <span class="va">qc</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
