@@ -226,14 +226,10 @@ visualise them to compare the levels of aligned reads to the genome.</p>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ce</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">plotAnnot_</span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Removed 20 rows containing missing values (`geom_segment()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 20 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
-<div class="figure">
-<img src="plot%20stats-1.png" alt=""><p class="caption">plot of chunk plot stats</p>
-</div>
+<p><img src="plot%20stats-1.png"></p>
 <pre><code><span><span class="co">#&gt; Warning: Removed 20 rows containing missing values (`geom_segment()`).</span></span>
 <span><span class="co">#&gt; Removed 20 rows containing missing values (`geom_point()`).</span></span></code></pre>
-<div class="figure">
-<img src="plot%20stats-2.png" alt=""><p class="caption">plot of chunk plot stats</p>
-</div>
+<p><img src="plot%20stats-2.png"></p>
 <p>There are noticeably less Okinawa reads mapped to the Osaka genome,
 but there is still a substantial number of unmapped Osaka reads. We can
 also see the difference in the SL-containing samples and those with SL
@@ -277,33 +273,23 @@ elements in the data, starting with loading the GFF file with
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ce</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">plotAnnot_</span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Removed 16 rows containing missing values (`geom_segment()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 16 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
-<div class="figure">
-<img src="annotate%20CTSSs-1.png" alt=""><p class="caption">plot of chunk annotate CTSSs</p>
-</div>
+<p><img src="annotate%20CTSSs-1.png"></p>
 <pre><code><span><span class="co">#&gt; Warning: Removed 16 rows containing missing values (`geom_segment()`).</span></span>
 <span><span class="co">#&gt; Removed 16 rows containing missing values (`geom_point()`).</span></span></code></pre>
-<div class="figure">
-<img src="annotate%20CTSSs-2.png" alt=""><p class="caption">plot of chunk annotate CTSSs</p>
-</div>
+<p><img src="annotate%20CTSSs-2.png"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'red'</span>, <span class="st">'blue'</span>, <span class="st">'red'</span><span class="op">)</span></span>
 <span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/setColors.html" class="external-link">setColors</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">colors</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">ce</span><span class="op">$</span><span class="va">OKItoOSA</span>, values <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span></code></pre></div>
-<div class="figure">
-<img src="set%20colors%20and%20plot%20reverse%20cumulatives-1.png" alt=""><p class="caption">plot of chunk set colors and plot reverse
-cumulatives</p>
-</div>
+<p><img src="set%20colors%20and%20plot%20reverse%20cumulatives-1.png"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">ce</span><span class="op">$</span><span class="va">OSAtoOSA</span>, values <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span></code></pre></div>
-<div class="figure">
-<img src="set%20colors%20and%20plot%20reverse%20cumulatives-2.png" alt=""><p class="caption">plot of chunk set colors and plot reverse
-cumulatives</p>
-</div>
+<p><img src="set%20colors%20and%20plot%20reverse%20cumulatives-2.png"></p>
 <p>We can see that the samples without SL (blue) roughly follow a
 power-law distribution, while the SL samples do not (red). This can be
 used for choosing an appropriate method for normalization. Finally, we
-can save the polished data for further steps: clustering of either <a href="vignettes/clustering_sl.Rmd">the SL-containing samples</a> or <a href="vignettes/clustering_no.Rmd">samples without SL</a>.</p>
+can save the polished data for further steps: clustering of either <a href="clustering_sl.html">the SL-containing samples</a> or <a href="clustering_no.html">samples without SL</a>.</p>
   </main>
 </div>
 
