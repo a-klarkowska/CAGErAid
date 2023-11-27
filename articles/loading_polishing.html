@@ -88,12 +88,26 @@ Let’s load and examine the pre-extracted CTSS data:</p>
 <span></span>
 <span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/SimpleList-class.html" class="external-link">SimpleList</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">ce</span><span class="op">$</span><span class="va">OKItoOSA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">ce_path</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in gzfile(file, "rb"): invalid 'description' argument</span></span>
 <span><span class="va">ce</span><span class="op">$</span><span class="va">OSAtoOSA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">ce_path</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in gzfile(file, "rb"): invalid 'description' argument</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; list()</span></span></code></pre></div>
+<span><span class="co">#&gt; $OKItoOSA</span></span>
+<span><span class="co">#&gt; DataFrame with 4 rows and 4 columns</span></span>
+<span><span class="co">#&gt;                       inputFiles sampleLabels inputFilesType librarySizes</span></span>
+<span><span class="co">#&gt;                      &lt;character&gt;  &lt;character&gt;    &lt;character&gt;    &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; DE1_no_T1 /bucket/LuscombeU/li..    DE1_no_T1   bamPairedEnd         6691</span></span>
+<span><span class="co">#&gt; DE1_SL_T1 /bucket/LuscombeU/li..    DE1_SL_T1   bamPairedEnd       793418</span></span>
+<span><span class="co">#&gt; DE2_no_T1 /bucket/LuscombeU/li..    DE2_no_T1   bamPairedEnd        11081</span></span>
+<span><span class="co">#&gt; DE2_SL_T1 /bucket/LuscombeU/li..    DE2_SL_T1   bamPairedEnd      1720055</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $OSAtoOSA</span></span>
+<span><span class="co">#&gt; DataFrame with 4 rows and 4 columns</span></span>
+<span><span class="co">#&gt;                          inputFiles sampleLabels inputFilesType librarySizes</span></span>
+<span><span class="co">#&gt;                         &lt;character&gt;  &lt;character&gt;    &lt;character&gt;    &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; D2_T1_no_T1  /bucket/LuscombeU/li..  D2_T1_no_T1   bamPairedEnd     15988506</span></span>
+<span><span class="co">#&gt; D2_T1_SL_T1  /bucket/LuscombeU/li..  D2_T1_SL_T1   bamPairedEnd     19388358</span></span>
+<span><span class="co">#&gt; DE1_T1_no_T1 /bucket/LuscombeU/li.. DE1_T1_no_T1   bamPairedEnd     23830411</span></span>
+<span><span class="co">#&gt; DE1_T1_SL_T1 /bucket/LuscombeU/li.. DE1_T1_SL_T1   bamPairedEnd     14225646</span></span></code></pre></div>
 <p>The data contains the first two samples from the Okinawa and Osaka O.
 dioica reads aligned to the Osaka genome, one with splice leader
 sequences removed, and one containing splice leader sequences. To get
@@ -104,12 +118,98 @@ pipeline, let’s use <code><a href="../reference/quickPolish.html">quickPolish(
 <code class="sourceCode R"><span></span>
 <span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/quickPolish.html">quickPolish</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; list()</span></span></code></pre></div>
+<span><span class="co">#&gt; $OKItoOSA</span></span>
+<span><span class="co">#&gt; DataFrame with 4 rows and 10 columns</span></span>
+<span><span class="co">#&gt;                       inputFiles sampleLabels inputFilesType librarySizes       reads</span></span>
+<span><span class="co">#&gt;                      &lt;character&gt;  &lt;character&gt;    &lt;character&gt;    &lt;integer&gt; &lt;character&gt;</span></span>
+<span><span class="co">#&gt; DE1_no_T1 /bucket/LuscombeU/li..    DE1_no_T1   bamPairedEnd         6691         Oki</span></span>
+<span><span class="co">#&gt; DE1_SL_T1 /bucket/LuscombeU/li..    DE1_SL_T1   bamPairedEnd       793418         Oki</span></span>
+<span><span class="co">#&gt; DE2_no_T1 /bucket/LuscombeU/li..    DE2_no_T1   bamPairedEnd        11081         Oki</span></span>
+<span><span class="co">#&gt; DE2_SL_T1 /bucket/LuscombeU/li..    DE2_SL_T1   bamPairedEnd      1720055         Oki</span></span>
+<span><span class="co">#&gt;             SLfound     SLfactor  sampleType         RNA            Description</span></span>
+<span><span class="co">#&gt;           &lt;logical&gt;     &lt;factor&gt; &lt;character&gt; &lt;character&gt;            &lt;character&gt;</span></span>
+<span><span class="co">#&gt; DE1_no_T1     FALSE SL not found       Adult         DE1 Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; DE1_SL_T1      TRUE SL found           Adult         DE1 Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; DE2_no_T1     FALSE SL not found       Adult         DE2 Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; DE2_SL_T1      TRUE SL found           Adult         DE2 Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $OSAtoOSA</span></span>
+<span><span class="co">#&gt; DataFrame with 4 rows and 10 columns</span></span>
+<span><span class="co">#&gt;                          inputFiles sampleLabels inputFilesType librarySizes</span></span>
+<span><span class="co">#&gt;                         &lt;character&gt;  &lt;character&gt;    &lt;character&gt;    &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; D2_T1_no_T1  /bucket/LuscombeU/li..  D2_T1_no_T1   bamPairedEnd     15988506</span></span>
+<span><span class="co">#&gt; D2_T1_SL_T1  /bucket/LuscombeU/li..  D2_T1_SL_T1   bamPairedEnd     19388358</span></span>
+<span><span class="co">#&gt; DE1_T1_no_T1 /bucket/LuscombeU/li.. DE1_T1_no_T1   bamPairedEnd     23830411</span></span>
+<span><span class="co">#&gt; DE1_T1_SL_T1 /bucket/LuscombeU/li.. DE1_T1_SL_T1   bamPairedEnd     14225646</span></span>
+<span><span class="co">#&gt;                    reads   SLfound     SLfactor  sampleType         RNA</span></span>
+<span><span class="co">#&gt;              &lt;character&gt; &lt;logical&gt;     &lt;factor&gt; &lt;character&gt; &lt;character&gt;</span></span>
+<span><span class="co">#&gt; D2_T1_no_T1          Osa     FALSE SL not found       JuvD2       D2_T1</span></span>
+<span><span class="co">#&gt; D2_T1_SL_T1          Osa      TRUE SL found           JuvD2       D2_T1</span></span>
+<span><span class="co">#&gt; DE1_T1_no_T1         Osa     FALSE SL not found       Adult      DE1_T1</span></span>
+<span><span class="co">#&gt; DE1_T1_SL_T1         Osa      TRUE SL found           Adult      DE1_T1</span></span>
+<span><span class="co">#&gt;                         Description</span></span>
+<span><span class="co">#&gt;                         &lt;character&gt;</span></span>
+<span><span class="co">#&gt; D2_T1_no_T1  Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; D2_T1_SL_T1  Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; DE1_T1_no_T1 Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; DE1_T1_SL_T1 Oikopleura dioica (O..</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/quickMQC.html">quickMQC</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; list()</span></span></code></pre></div>
+<span><span class="co">#&gt; $OKItoOSA</span></span>
+<span><span class="co">#&gt; DataFrame with 4 rows and 16 columns</span></span>
+<span><span class="co">#&gt;                       inputFiles sampleLabels inputFilesType librarySizes       reads</span></span>
+<span><span class="co">#&gt;                      &lt;character&gt;  &lt;character&gt;    &lt;character&gt;    &lt;integer&gt; &lt;character&gt;</span></span>
+<span><span class="co">#&gt; DE1_no_T1 /bucket/LuscombeU/li..    DE1_no_T1   bamPairedEnd         6691         Oki</span></span>
+<span><span class="co">#&gt; DE1_SL_T1 /bucket/LuscombeU/li..    DE1_SL_T1   bamPairedEnd       793418         Oki</span></span>
+<span><span class="co">#&gt; DE2_no_T1 /bucket/LuscombeU/li..    DE2_no_T1   bamPairedEnd        11081         Oki</span></span>
+<span><span class="co">#&gt; DE2_SL_T1 /bucket/LuscombeU/li..    DE2_SL_T1   bamPairedEnd      1720055         Oki</span></span>
+<span><span class="co">#&gt;             SLfound     SLfactor  sampleType         RNA            Description</span></span>
+<span><span class="co">#&gt;           &lt;logical&gt;     &lt;factor&gt; &lt;character&gt; &lt;character&gt;            &lt;character&gt;</span></span>
+<span><span class="co">#&gt; DE1_no_T1     FALSE SL not found       Adult         DE1 Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; DE1_SL_T1      TRUE SL found           Adult         DE1 Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; DE2_no_T1     FALSE SL not found       Adult         DE2 Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt; DE2_SL_T1      TRUE SL found           Adult         DE2 Oikopleura dioica (O..</span></span>
+<span><span class="co">#&gt;           paired_aligned_one paired_aligned_multi paired_total realLibrarySizes</span></span>
+<span><span class="co">#&gt;                    &lt;integer&gt;            &lt;integer&gt;    &lt;integer&gt;        &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; DE1_no_T1              34052                98098     45036397         89762138</span></span>
+<span><span class="co">#&gt; DE1_SL_T1            1363267                13666     67806997         67956188</span></span>
+<span><span class="co">#&gt; DE2_no_T1              62510               244083     72818282        157076012</span></span>
+<span><span class="co">#&gt; DE2_SL_T1            2695861                19142    137763090        138124640</span></span>
+<span><span class="co">#&gt;           extracted      rdna</span></span>
+<span><span class="co">#&gt;           &lt;numeric&gt; &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; DE1_no_T1  89649244  44612847</span></span>
+<span><span class="co">#&gt; DE1_SL_T1  67855741     48744</span></span>
+<span><span class="co">#&gt; DE2_no_T1 156844691  84026409</span></span>
+<span><span class="co">#&gt; DE2_SL_T1 137854528     91438</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $OSAtoOSA</span></span>
+<span><span class="co">#&gt; DataFrame with 4 rows and 16 columns</span></span>
+<span><span class="co">#&gt;                          inputFiles sampleLabels inputFilesType librarySizes</span></span>
+<span><span class="co">#&gt;                         &lt;character&gt;  &lt;character&gt;    &lt;character&gt;    &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; D2_T1_no_T1  /bucket/LuscombeU/li..  D2_T1_no_T1   bamPairedEnd     15988506</span></span>
+<span><span class="co">#&gt; D2_T1_SL_T1  /bucket/LuscombeU/li..  D2_T1_SL_T1   bamPairedEnd     19388358</span></span>
+<span><span class="co">#&gt; DE1_T1_no_T1 /bucket/LuscombeU/li.. DE1_T1_no_T1   bamPairedEnd     23830411</span></span>
+<span><span class="co">#&gt; DE1_T1_SL_T1 /bucket/LuscombeU/li.. DE1_T1_SL_T1   bamPairedEnd     14225646</span></span>
+<span><span class="co">#&gt;                    reads   SLfound     SLfactor  sampleType         RNA</span></span>
+<span><span class="co">#&gt;              &lt;character&gt; &lt;logical&gt;     &lt;factor&gt; &lt;character&gt; &lt;character&gt;</span></span>
+<span><span class="co">#&gt; D2_T1_no_T1          Osa     FALSE SL not found       JuvD2       D2_T1</span></span>
+<span><span class="co">#&gt; D2_T1_SL_T1          Osa      TRUE SL found           JuvD2       D2_T1</span></span>
+<span><span class="co">#&gt; DE1_T1_no_T1         Osa     FALSE SL not found       Adult      DE1_T1</span></span>
+<span><span class="co">#&gt; DE1_T1_SL_T1         Osa      TRUE SL found           Adult      DE1_T1</span></span>
+<span><span class="co">#&gt;                         Description paired_aligned_one paired_aligned_multi</span></span>
+<span><span class="co">#&gt;                         &lt;character&gt;          &lt;integer&gt;            &lt;integer&gt;</span></span>
+<span><span class="co">#&gt; D2_T1_no_T1  Oikopleura dioica (O..           28101869               422201</span></span>
+<span><span class="co">#&gt; D2_T1_SL_T1  Oikopleura dioica (O..           35382117               310598</span></span>
+<span><span class="co">#&gt; DE1_T1_no_T1 Oikopleura dioica (O..           49499015               888382</span></span>
+<span><span class="co">#&gt; DE1_T1_SL_T1 Oikopleura dioica (O..           24499459               181375</span></span>
+<span><span class="co">#&gt;              paired_total realLibrarySizes extracted      rdna</span></span>
+<span><span class="co">#&gt;                 &lt;integer&gt;        &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; D2_T1_no_T1      62079678         98713905  98599355  36519677</span></span>
+<span><span class="co">#&gt; D2_T1_SL_T1      53639240         53735899  53675760     36520</span></span>
+<span><span class="co">#&gt; DE1_T1_no_T1     92107281        156998772 156802134  64694853</span></span>
+<span><span class="co">#&gt; DE1_T1_SL_T1     38901799         39019742  38965260     63461</span></span></code></pre></div>
 <p>After adding the statistics metadata from the pipeline, we can
 visualise them to compare the levels of aligned reads to the genome.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -123,7 +223,17 @@ visualise them to compare the levels of aligned reads to the genome.</p>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">': QC report of CAGE library alignment'</span><span class="op">)</span>,</span>
 <span>              sub <span class="op">=</span> <span class="st">'The splice leader sequence was detected and removed before alignment'</span><span class="op">)</span></span>
 <span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ce</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">plotAnnot_</span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ce</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">plotAnnot_</span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Removed 20 rows containing missing values (`geom_segment()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 20 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
+<div class="figure">
+<img src="plot%20stats-1.png" alt=""><p class="caption">plot of chunk plot stats</p>
+</div>
+<pre><code><span><span class="co">#&gt; Warning: Removed 20 rows containing missing values (`geom_segment()`).</span></span>
+<span><span class="co">#&gt; Removed 20 rows containing missing values (`geom_point()`).</span></span></code></pre>
+<div class="figure">
+<img src="plot%20stats-2.png" alt=""><p class="caption">plot of chunk plot stats</p>
+</div>
 <p>There are noticeably less Okinawa reads mapped to the Osaka genome,
 but there is still a substantial number of unmapped Osaka reads. We can
 also see the difference in the SL-containing samples and those with SL
@@ -131,11 +241,10 @@ removed.</p>
 <p>Let’s annotate the CTSSs and examine the proportions of sequence
 elements in the data, starting with loading the GFF file with
 <code><a href="../reference/quickGFF.html">quickGFF()</a></code>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">gff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Osaka.gtf"</span>, package<span class="op">=</span><span class="st">"CAGErAid"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">gff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Osaka.gtf"</span>, package<span class="op">=</span><span class="st">"CAGErAid"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/quickGFF.html">quickGFF</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in h(simpleError(msg, call)): error in evaluating the argument 'con' in selecting a method for function 'import': Cannot detect format (no extension found in file name)</span></span>
 <span></span>
 <span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/annotateCTSS.html" class="external-link">annotateCTSS</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">gff</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -143,6 +252,18 @@ elements in the data, starting with loading the GFF file with
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ce</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">ce</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'promoter'</span>, <span class="st">'exon'</span>, <span class="st">'intron'</span>, <span class="st">'unknown'</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">prop.table</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>  <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span>        <span class="op">}</span></span>
+<span><span class="co">#&gt; [1] "OKItoOSA"</span></span>
+<span><span class="co">#&gt;           promoter exon intron unknown</span></span>
+<span><span class="co">#&gt; DE1_no_T1     0.37 0.40   0.21    0.02</span></span>
+<span><span class="co">#&gt; DE1_SL_T1     0.87 0.00   0.00    0.13</span></span>
+<span><span class="co">#&gt; DE2_no_T1     0.44 0.36   0.17    0.03</span></span>
+<span><span class="co">#&gt; DE2_SL_T1     0.88 0.00   0.00    0.12</span></span>
+<span><span class="co">#&gt; [1] "OSAtoOSA"</span></span>
+<span><span class="co">#&gt;              promoter exon intron unknown</span></span>
+<span><span class="co">#&gt; D2_T1_no_T1      0.78 0.04   0.08    0.10</span></span>
+<span><span class="co">#&gt; D2_T1_SL_T1      0.84 0.08   0.04    0.05</span></span>
+<span><span class="co">#&gt; DE1_T1_no_T1     0.79 0.03   0.06    0.11</span></span>
+<span><span class="co">#&gt; DE1_T1_SL_T1     0.82 0.06   0.04    0.08</span></span>
 <span></span>
 <span><span class="va">plotAnnot_</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotAnnot.html" class="external-link">plotAnnot</a></span><span class="op">(</span><span class="va">ce</span><span class="op">[[</span><span class="va">name</span><span class="op">]</span><span class="op">]</span>, <span class="st">'counts'</span>, group <span class="op">=</span> <span class="st">'RNA'</span>, facet <span class="op">=</span> <span class="st">'SLfactor'</span>, normalise <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
@@ -153,15 +274,32 @@ elements in the data, starting with loading the GFF file with
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">name</span>, <span class="st">': Annotation of the aligned tags'</span><span class="op">)</span>,</span>
 <span>              sub <span class="op">=</span> <span class="st">'The promoters are defined as the 1-kb window centered on the transcript start site.'</span><span class="op">)</span><span class="op">}</span></span>
 <span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ce</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">plotAnnot_</span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">name</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ce</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">plotAnnot_</span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Removed 16 rows containing missing values (`geom_segment()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 16 rows containing missing values (`geom_point()`).</span></span></code></pre></div>
+<div class="figure">
+<img src="annotate%20CTSSs-1.png" alt=""><p class="caption">plot of chunk annotate CTSSs</p>
+</div>
+<pre><code><span><span class="co">#&gt; Warning: Removed 16 rows containing missing values (`geom_segment()`).</span></span>
+<span><span class="co">#&gt; Removed 16 rows containing missing values (`geom_point()`).</span></span></code></pre>
+<div class="figure">
+<img src="annotate%20CTSSs-2.png" alt=""><p class="caption">plot of chunk annotate CTSSs</p>
+</div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'red'</span>, <span class="st">'blue'</span>, <span class="st">'red'</span><span class="op">)</span></span>
 <span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/setColors.html" class="external-link">setColors</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">colors</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">ce</span><span class="op">$</span><span class="va">OKItoOSA</span>, values <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'plotReverseCumulatives' for signature '"NULL"'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">ce</span><span class="op">$</span><span class="va">OSAtoOSA</span>, values <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'plotReverseCumulatives' for signature '"NULL"'</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">ce</span><span class="op">$</span><span class="va">OKItoOSA</span>, values <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="set%20colors%20and%20plot%20reverse%20cumulatives-1.png" alt=""><p class="caption">plot of chunk set colors and plot reverse
+cumulatives</p>
+</div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">ce</span><span class="op">$</span><span class="va">OSAtoOSA</span>, values <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="set%20colors%20and%20plot%20reverse%20cumulatives-2.png" alt=""><p class="caption">plot of chunk set colors and plot reverse
+cumulatives</p>
+</div>
 <p>We can see that the samples without SL (blue) roughly follow a
 power-law distribution, while the SL samples do not (red). This can be
 used for choosing an appropriate method for normalization. Finally, we

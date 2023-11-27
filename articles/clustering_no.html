@@ -83,14 +83,11 @@
 <span></span>
 <span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu">SimpleList</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">ce</span><span class="op">$</span><span class="va">OKItoOSA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">ce_path</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in gzfile(file, "rb"): invalid 'description' argument</span></span>
-<span><span class="va">ce</span><span class="op">$</span><span class="va">OSAtoOSA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">ce_path</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in gzfile(file, "rb"): invalid 'description' argument</span></span></code></pre></div>
+<span><span class="va">ce</span><span class="op">$</span><span class="va">OSAtoOSA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">ce_path</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s also load in the GFF file for annotating clusters:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Osaka.gtf"</span>, package<span class="op">=</span><span class="st">"CAGErAid"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="../reference/quickGFF.html">quickGFF</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in h(simpleError(msg, call)): error in evaluating the argument 'con' in selecting a method for function 'import': Cannot detect format (no extension found in file name)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">gff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Osaka.gtf"</span>, package<span class="op">=</span><span class="st">"CAGErAid"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/quickGFF.html">quickGFF</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>We separate samples without SL and check for power law
 distribution.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -99,27 +96,79 @@ distribution.</p>
 <span>  <span class="va">ce</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">ce</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">[</span>, <span class="op">!</span><span class="va">ce</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">SLfound</span><span class="op">]</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">x</span>, fitInRange <span class="op">=</span> <span class="cn">NULL</span>, values <span class="op">=</span> <span class="st">'raw'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; list()</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">x</span>, fitInRange <span class="op">=</span> <span class="cn">NULL</span>, values <span class="op">=</span> <span class="st">'raw'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="plot%20reverse%20cumulatives%20raw%20no-1.png" alt="plot of chunk plot reverse cumulatives raw no"><img src="plot%20reverse%20cumulatives%20raw%20no-2.png" alt="plot of chunk plot reverse cumulatives raw no"></p>
+<pre><code><span><span class="co">#&gt;             OKItoOSA         OSAtoOSA        </span></span>
+<span><span class="co">#&gt; data        data.frame,5     data.frame,5    </span></span>
+<span><span class="co">#&gt; layers      list,1           list,1          </span></span>
+<span><span class="co">#&gt; scales      ScalesList,2     ScalesList,2    </span></span>
+<span><span class="co">#&gt; mapping     uneval,3         uneval,3        </span></span>
+<span><span class="co">#&gt; theme       list,0           list,0          </span></span>
+<span><span class="co">#&gt; coordinates CoordCartesian,5 CoordCartesian,5</span></span>
+<span><span class="co">#&gt; facet       FacetWrap,3      FacetWrap,3     </span></span>
+<span><span class="co">#&gt; plot_env    ?                ?               </span></span>
+<span><span class="co">#&gt; labels      list,4           list,4</span></span></code></pre>
 <p>As seen in the reverse cumulative plot, samples without SL follow a
 power law distribution. In this case we use the power law
 normalization.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/normalizeTagCount.html" class="external-link">normalizeTagCount</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">'powerLaw'</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">x</span>, fitInRange <span class="op">=</span> <span class="cn">NULL</span>, values <span class="op">=</span> <span class="st">'normalized'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; list()</span></span></code></pre></div>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Normalizing tag count...</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Normalizing tag count...</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/plotReverseCumulatives.html" class="external-link">plotReverseCumulatives</a></span><span class="op">(</span><span class="va">x</span>, fitInRange <span class="op">=</span> <span class="cn">NULL</span>, values <span class="op">=</span> <span class="st">'normalized'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="plot%20normalized%20reverse%20cumulatives%20norm%20no-1.png" alt="plot of chunk plot normalized reverse cumulatives norm no"><img src="plot%20normalized%20reverse%20cumulatives%20norm%20no-2.png" alt="plot of chunk plot normalized reverse cumulatives norm no"></p>
+<pre><code><span><span class="co">#&gt;             OKItoOSA         OSAtoOSA        </span></span>
+<span><span class="co">#&gt; data        data.frame,5     data.frame,5    </span></span>
+<span><span class="co">#&gt; layers      list,1           list,1          </span></span>
+<span><span class="co">#&gt; scales      ScalesList,2     ScalesList,2    </span></span>
+<span><span class="co">#&gt; mapping     uneval,3         uneval,3        </span></span>
+<span><span class="co">#&gt; theme       list,0           list,0          </span></span>
+<span><span class="co">#&gt; coordinates CoordCartesian,5 CoordCartesian,5</span></span>
+<span><span class="co">#&gt; facet       FacetWrap,3      FacetWrap,3     </span></span>
+<span><span class="co">#&gt; plot_env    ?                ?               </span></span>
+<span><span class="co">#&gt; labels      list,4           list,4</span></span></code></pre>
 <p>After normalization, we can cluster the CTSSs. First, let’s annotate
 the data.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/CAGEr/man/annotateCTSS.html" class="external-link">annotateCTSS</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">gff</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Now we can find consensus clusters with the use of
 <code><a href="../reference/quickCC.html">quickCC()</a></code>. For SL-containing samples, the function uses the
 paraclu algorithm.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/quickCC.html">quickCC</a></span><span class="op">(</span><span class="va">x</span>, sl_found <span class="op">=</span> <span class="cn">FALSE</span>, gff <span class="op">=</span> <span class="va">gff</span>, nr_samples <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ce</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/quickCC.html">quickCC</a></span><span class="op">(</span><span class="va">x</span>, sl_found <span class="op">=</span> <span class="cn">FALSE</span>, gff <span class="op">=</span> <span class="va">gff</span>, nr_samples <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Filtering out CTSSs below threshold...</span></span>
+<span><span class="co">#&gt; Clustering...</span></span>
+<span><span class="co">#&gt;  -&gt; DE1_no_T1</span></span>
+<span><span class="co">#&gt;  -&gt; DE2_no_T1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Calculating cumulative sum of CAGE signal along clusters...</span></span>
+<span><span class="co">#&gt;  -&gt; DE1_no_T1</span></span>
+<span><span class="co">#&gt;  -&gt; DE2_no_T1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Getting positions of quantiles within clusters...</span></span>
+<span><span class="co">#&gt;  -&gt; DE1_no_T1</span></span>
+<span><span class="co">#&gt;  -&gt; DE2_no_T1</span></span>
+<span><span class="co">#&gt;  -&gt; all samples grouped</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Filtering out CTSSs below threshold...</span></span>
+<span><span class="co">#&gt; Clustering...</span></span>
+<span><span class="co">#&gt;  -&gt; D2_T1_no_T1</span></span>
+<span><span class="co">#&gt;  -&gt; DE1_T1_no_T1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Calculating cumulative sum of CAGE signal along clusters...</span></span>
+<span><span class="co">#&gt;  -&gt; D2_T1_no_T1</span></span>
+<span><span class="co">#&gt;  -&gt; DE1_T1_no_T1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Getting positions of quantiles within clusters...</span></span>
+<span><span class="co">#&gt;  -&gt; D2_T1_no_T1</span></span>
+<span><span class="co">#&gt;  -&gt; DE1_T1_no_T1</span></span>
+<span><span class="co">#&gt;  -&gt; all samples grouped</span></span></code></pre></div>
 <p>Finally, we can save the CAGEexp objects and export the data to the
 bed format for visualisation.</p>
   </main>
